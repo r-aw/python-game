@@ -69,7 +69,7 @@ def down(event):
    if y2 < (HEIGHT - 20):
       canvas.move(player_ship, 0, 10 )
       
-# Create fireball from the center of the player_ship
+# shoot fireball from centre of the playship.
 
 def fire(event):
     x1, y1, x2, y2 = canvas.bbox(player_ship)
