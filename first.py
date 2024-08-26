@@ -24,11 +24,30 @@ canvas.pack(fill="both", expand=True)
 
 #create canvas for spaceship
 spaceship = tk.PhotoImage(file = "sprites/spaceship.png")
-player_ship = canvas.create_image(10,460, anchor = tk.NW, image = spaceship)
+player_ship = canvas.create_image(10,470, anchor = tk.NW, image = spaceship)
+
+#fireball
+
+class Fireball:
+    def __init__(self, canvas, x, y):
+        self.canvas = canvas
+        self.image = PhotoImage(file="sprites/fireball.png")
+        self.id = self.canvas.create_image(x, y, anchor=tk.NW, image=self.image)
+        self.move_up()
+
+    def move_up(self):
+        x1, y1, x2, y2 = self.canvas.bbox(self.id)
+        if y1 > 0:  # Move the fireball up if it's still within the window
+            self.canvas.move(self.id, 0, -10)
+             # Continue moving up every 50ms
+            self.canvas.after(50, self.move_up) 
+        else:
+            # Remove the fireball when it goes off-screen
+            self.canvas.delete(self.id)  
 
 
-# move spaceship
 
+# commands
 
 def left(event):
    x1, y1, x2, y2 = canvas.bbox(player_ship)
@@ -37,7 +56,7 @@ def left(event):
 
 def right(event):
    x1, y1, x2, y2 = canvas.bbox(player_ship)
-   if x2 < WIDHT:
+   if x2 < (WIDHT - 10):
       canvas.move(player_ship, 10, 0)
 
 def up(event):
@@ -47,14 +66,22 @@ def up(event):
 
 def down(event):
    x1, y1, x2, y2 = canvas.bbox(player_ship)
-   if y2 < HEIGHT:
+   if y2 < (HEIGHT - 20):
       canvas.move(player_ship, 0, 10 )
+      
+# Create fireball from the center of the player_ship
 
+def fire(event):
+    x1, y1, x2, y2 = canvas.bbox(player_ship)
+    fireball = Fireball(canvas, x1 + (x2-x1)//2, y1)  
 
-window .bind("<Left>", left)
-window .bind("<Right>", right)
-window .bind("<Up>", up)
-window .bind("<Down>", down)
+# bind commands to keyboard
+
+window.bind("<space>", fire)
+window.bind("<Left>", left)
+window.bind("<Right>", right)
+window.bind("<Up>", up)
+window.bind("<Down>", down)
 
 # Start the main loop
 window.mainloop()
