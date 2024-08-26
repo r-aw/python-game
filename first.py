@@ -31,16 +31,24 @@ player_ship = canvas.create_image(10,460, anchor = tk.NW, image = spaceship)
 
 
 def left(event):
-   canvas.move(player_ship, -10, 0)
+   x1, y1, x2, y2 = canvas.bbox(player_ship)
+   if x1 > 10:  
+      canvas.move(player_ship, -10, 0)
 
 def right(event):
-   canvas.move(player_ship, 10, 0)
+   x1, y1, x2, y2 = canvas.bbox(player_ship)
+   if x2 < WIDHT:
+      canvas.move(player_ship, 10, 0)
 
 def up(event):
-   canvas.move(player_ship, 0, -10)
+   x1, y1, x2, y2 = canvas.bbox(player_ship)
+   if y1 > 0:
+      canvas.move(player_ship, 0, -10)
 
 def down(event):
-   canvas.move(player_ship, 0, 10 )
+   x1, y1, x2, y2 = canvas.bbox(player_ship)
+   if y2 < HEIGHT:
+      canvas.move(player_ship, 0, 10 )
 
 
 window .bind("<Left>", left)
