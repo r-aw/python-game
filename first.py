@@ -1,6 +1,5 @@
 import tkinter as tk
 from tkinter import PhotoImage, Canvas
-import pygame
 
 HEIGHT = 500
 WIDHT = 320
@@ -25,20 +24,29 @@ canvas.pack(fill="both", expand=True)
 
 #create canvas for spaceship
 spaceship = tk.PhotoImage(file = "sprites/spaceship.png")
-image = canvas.create_image(10,460, anchor = tk.NW, image = spaceship)
+player_ship = canvas.create_image(10,460, anchor = tk.NW, image = spaceship)
 
 
 # move spaceship
 
+
 def left(event):
-   canvas.move(image, -10, 0)
+   canvas.move(player_ship, -10, 0)
 
 def right(event):
-   canvas.move(image, 10, 0)
+   canvas.move(player_ship, 10, 0)
+
+def up(event):
+   canvas.move(player_ship, 0, -10)
+
+def down(event):
+   canvas.move(player_ship, 0, 10 )
 
 
 window .bind("<Left>", left)
 window .bind("<Right>", right)
+window .bind("<Up>", up)
+window .bind("<Down>", down)
 
 # Start the main loop
 window.mainloop()
