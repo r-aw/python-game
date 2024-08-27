@@ -28,11 +28,6 @@ canvas.pack(fill="both", expand=True)
 spaceship = tk.PhotoImage(file = "sprites/spaceship.png")
 player_ship = canvas.create_image(10,470, anchor = tk.NW, image = spaceship)
 
-#sound
-
-def play_sound():
-   playsound('sounds/fireball_noise.mp3')
-
 #fireball
 
 class Fireball:
@@ -50,9 +45,10 @@ class Fireball:
             self.canvas.after(50, self.move_up) 
         else:
             # Remove the fireball when it goes off-screen
-            self.canvas.delete(self.id)  
-
-
+            self.canvas.delete(self.id) 
+    def play_sound(self):
+         playsound('sounds/fireball_noise.mp3')
+ 
 
 # commands
 
@@ -81,7 +77,7 @@ def down(event):
 def fire(event):
     x1, y1, x2, y2 = canvas.bbox(player_ship)
     fireball = Fireball(canvas, x1 + (x2-x1)//2, y1)
-    play_sound()  
+    fireball.play_sound()
 
 # bind commands to keyboard
 
