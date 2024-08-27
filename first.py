@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import PhotoImage, Canvas
+from playsound import playsound
 
 HEIGHT = 500
 WIDHT = 320
@@ -25,6 +26,12 @@ canvas.pack(fill="both", expand=True)
 #create canvas for spaceship
 spaceship = tk.PhotoImage(file = "sprites/spaceship.png")
 player_ship = canvas.create_image(10,470, anchor = tk.NW, image = spaceship)
+
+#sound
+
+def play():
+   playsound('fireball_noise.mp3')
+
 
 #fireball
 
