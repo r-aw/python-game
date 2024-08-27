@@ -12,6 +12,7 @@ window = tk.Tk()
 window.title('SPACE INVADERS 🛸')
 window.geometry('320x500')
 window.minsize(320, 500)
+
 window.maxsize(320, 500)
 
 
@@ -29,9 +30,8 @@ player_ship = canvas.create_image(10,470, anchor = tk.NW, image = spaceship)
 
 #sound
 
-def play():
-   playsound('fireball_noise.mp3')
-
+def play_sound():
+   playsound('sounds/fireball_noise.mp3')
 
 #fireball
 
@@ -80,7 +80,8 @@ def down(event):
 
 def fire(event):
     x1, y1, x2, y2 = canvas.bbox(player_ship)
-    fireball = Fireball(canvas, x1 + (x2-x1)//2, y1)  
+    fireball = Fireball(canvas, x1 + (x2-x1)//2, y1)
+    play_sound()  
 
 # bind commands to keyboard
 
