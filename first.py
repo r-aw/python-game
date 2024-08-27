@@ -1,20 +1,21 @@
 import tkinter as tk
 from tkinter import PhotoImage, Canvas
-from playsound import playsound
+import pygame
 
+
+FPS = 60
 HEIGHT = 500
 WIDHT = 320
 
 # Create the main window
 window = tk.Tk()
+pygame.mixer.init()
 
 # Set window properties
 window.title('SPACE INVADERS 🛸')
 window.geometry('320x500')
 window.minsize(320, 500)
-
 window.maxsize(320, 500)
-
 
 # Load the background image and keep a reference to it
 bg = PhotoImage(file = "sprites/purple_nebula.png")
@@ -47,7 +48,8 @@ class Fireball:
             # Remove the fireball when it goes off-screen
             self.canvas.delete(self.id) 
     def play_sound(self):
-         playsound('sounds/fireball_noise.mp3')
+       fireball_sound = pygame.mixer.Sound("sounds/fireball_noise.mp3")
+
  
 
 # commands
