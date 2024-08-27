@@ -47,10 +47,8 @@ class Fireball:
         else:
             # Remove the fireball when it goes off-screen
             self.canvas.delete(self.id) 
-    def play_sound(self):
-       fireball_sound = pygame.mixer.Sound("sounds/fireball_noise.mp3")
-
- 
+    def playsound(self):
+        fireball = pygame.mixer.Sound("sounds/fireball_noise.mp3").play()
 
 # commands
 
@@ -79,7 +77,7 @@ def down(event):
 def fire(event):
     x1, y1, x2, y2 = canvas.bbox(player_ship)
     fireball = Fireball(canvas, x1 + (x2-x1)//2, y1)
-    fireball.play_sound()
+    fireball.playsound()
 
 # bind commands to keyboard
 
