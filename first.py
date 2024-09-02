@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import PhotoImage, Canvas
 import pygame
+from enemy_spaceship import Enemy
 
 
 FPS = 60
@@ -29,6 +30,10 @@ canvas.pack(fill="both", expand=True)
 spaceship = tk.PhotoImage(file = "sprites/spaceship.png")
 player_ship = canvas.create_image(10,470, anchor = tk.NW, image = spaceship)
 
+#enemies
+
+enemy = Enemy(tk, canvas, 100, 50)
+
 #fireball
 
 class Fireball:
@@ -47,6 +52,8 @@ class Fireball:
         else:
             # Remove the fireball when it goes off-screen
             self.canvas.delete(self.id) 
+
+      #create sound function to be used / can use the same function but for multiple different sounds etc...
     def playsound(self):
         fireball = pygame.mixer.Sound("sounds/fireball_noise.mp3").play()
 
@@ -72,7 +79,7 @@ def down(event):
    if y2 < (HEIGHT - 20):
       canvas.move(player_ship, 0, 10 )
       
-# shoot fireball from centre of the playship.
+# shoot fireball from centre of the playship
 
 def fire(event):
     x1, y1, x2, y2 = canvas.bbox(player_ship)
