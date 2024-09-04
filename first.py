@@ -30,11 +30,9 @@ canvas.pack(fill="both", expand=True)
 spaceship = tk.PhotoImage(file = "sprites/spaceship.png")
 player_ship = canvas.create_image(10,470, anchor = tk.NW, image = spaceship)
 
-#enemies
-
-enemy = Enemy(tk, canvas, 100, 50)
-
 #fireball
+
+enemies = [Enemy(tk, canvas, 100, 0)]
 
 class Fireball:
     def __init__(self, canvas, x, y):
@@ -51,7 +49,20 @@ class Fireball:
             self.canvas.after(50, self.move_up) 
         else:
             # Remove the fireball when it goes off-screen
-            self.canvas.delete(self.id) 
+            self.canvas.delete(self.id)
+
+        for enemy in enemies:
+
+
+            ex1, ey1, ex2, ey2 = enemy.position()
+        
+            if ex1 < x1 < ex2 and ey1 < y1 < ey2:
+                enemy.remove()
+                enemies.remove(enemy)  
+                self.canvas.delete(self.id)  
+                
+        
+
 
       #create sound function to be used / can use the same function but for multiple different sounds etc...
     def playsound(self):
