@@ -6,7 +6,7 @@ from enemy_spaceship import Enemy
 
 FPS = 60
 HEIGHT = 500
-WIDHT = 320
+WIDTH = 320
 
 # Create the main window
 window = tk.Tk()
@@ -54,7 +54,7 @@ class Fireball:
         for enemy in enemies:
 
 
-            ex1, ey1, ex2, ey2 = enemy.position()
+            ex1, ey1, ex2, ey2 = self.canvas.bbox(enemy.id)
         
             if ex1 < x1 < ex2 and ey1 < y1 < ey2:
                 enemy.remove()
@@ -77,7 +77,7 @@ def left(event):
 
 def right(event):
    x1, y1, x2, y2 = canvas.bbox(player_ship)
-   if x2 < (WIDHT - 10):
+   if x2 < (WIDTH - 10):
       canvas.move(player_ship, 10, 0)
 
 def up(event):
