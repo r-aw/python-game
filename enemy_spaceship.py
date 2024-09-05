@@ -76,4 +76,5 @@ class Enemy:
         self.canvas.itemconfig(self.id, image=self.images[self.current_image])
 
         self.canvas.after(150, self.animate)
+        self.canvas.after(150, self.animate)
 
