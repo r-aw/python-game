@@ -32,7 +32,8 @@ player_ship = canvas.create_image(10,470, anchor = tk.NW, image = spaceship)
 
 #fireball
 
-enemies = [Enemy(tk, canvas, 100, 0)]
+enemies = [Enemy(tk, canvas, 100, 0),Enemy(tk, canvas, 100, 40),Enemy(tk, canvas, 100, 80)]
+
 
 class Fireball:
     def __init__(self, canvas, x, y):
@@ -61,8 +62,6 @@ class Fireball:
                 enemies.remove(enemy)  
                 self.canvas.delete(self.id)  
                 
-        
-
 
       #create sound function to be used / can use the same function but for multiple different sounds etc...
     def playsound(self):

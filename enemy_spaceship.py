@@ -1,6 +1,41 @@
 from random import random
 
-enemy_spaceship = ["sprites/enemy_spaceship-1.png", "sprites/enemy_spaceship-2.png", "sprites/enemy_spaceship-3.png", "sprites/enemy_spaceship-4.png"]
+enemy_spaceship = ["sprites/enemy_spaceship-0.png",
+                    "sprites/enemy_spaceship-10.png",
+                    "sprites/enemy_spaceship-20.png", 
+                    "sprites/enemy_spaceship-30.png", 
+                    "sprites/enemy_spaceship-40.png", 
+                    "sprites/enemy_spaceship-50.png", 
+                    "sprites/enemy_spaceship-60.png", 
+                    "sprites/enemy_spaceship-70.png", 
+                    "sprites/enemy_spaceship-80.png", 
+                    "sprites/enemy_spaceship-90.png", 
+                    "sprites/enemy_spaceship-100.png", 
+                    "sprites/enemy_spaceship-110.png", 
+                    "sprites/enemy_spaceship-120.png", 
+                    "sprites/enemy_spaceship-130.png", 
+                    "sprites/enemy_spaceship-140.png", 
+                    "sprites/enemy_spaceship-150.png", 
+                    "sprites/enemy_spaceship-160.png", 
+                    "sprites/enemy_spaceship-170.png", 
+                    "sprites/enemy_spaceship-180.png", 
+                    "sprites/enemy_spaceship-190.png", 
+                    "sprites/enemy_spaceship-200.png", 
+                    "sprites/enemy_spaceship-210.png", 
+                    "sprites/enemy_spaceship-220.png", 
+                    "sprites/enemy_spaceship-230.png", 
+                    "sprites/enemy_spaceship-240.png", 
+                    "sprites/enemy_spaceship-250.png", 
+                    "sprites/enemy_spaceship-260.png", 
+                    "sprites/enemy_spaceship-270.png", 
+                    "sprites/enemy_spaceship-280.png", 
+                    "sprites/enemy_spaceship-290.png", 
+                    "sprites/enemy_spaceship-300.png", 
+                    "sprites/enemy_spaceship-310.png", 
+                    "sprites/enemy_spaceship-320.png",
+                    "sprites/enemy_spaceship-330.png",
+                    "sprites/enemy_spaceship-340.png",
+                    "sprites/enemy_spaceship-350.png",]
 
 
 class Enemy:
@@ -39,5 +74,5 @@ class Enemy:
         self.current_image = (self.current_image + 1) % len(self.images)
         self.canvas.itemconfig(self.id, image=self.images[self.current_image])
 
-        self.canvas.after(100, self.animate)
+        self.canvas.after(150, self.animate)
 
