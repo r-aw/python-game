@@ -35,7 +35,17 @@ class Enemy:
         self.animate()
 
     def move(self):
-        x1, y1, x2, y2 = self.canvas.bbox(self.id)
+        if self.id is None:
+            return
+        
+        bbox = self.canvas.bbox(self.id)
+
+        if bbox is None:
+            return
+
+        x1, y1, x2, y2 = bbox
+
+        
         direction = round(random())
         enemy_width = x2 - x1
         canvas_width = self.canvas.winfo_width()  # Get canvas width dynamically

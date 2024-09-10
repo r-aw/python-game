@@ -2,11 +2,13 @@ import tkinter as tk
 from tkinter import PhotoImage, Canvas
 import pygame
 from enemy_spaceship import Enemy
+from random import randint
 
 
 FPS = 60
 HEIGHT = 500
 WIDTH = 320
+total_score = 0
 
 # Create the main window
 window = tk.Tk()
@@ -43,7 +45,19 @@ class Fireball:
         self.move_up()
 
     def move_up(self):
-        x1, y1, x2, y2 = self.canvas.bbox(self.id)
+
+        if self.id is None:
+            return
+        
+        bbox = self.canvas.bbox(self.id)
+
+        if bbox is None:
+            return
+        
+        
+        x1, y1, x2, y2 = bbox
+        
+        
         if y1 > 0:  # Move the fireball up if it's still within the window
             self.canvas.move(self.id, 0, -10)
              # Continue moving up every 50ms
@@ -54,13 +68,22 @@ class Fireball:
 
         for enemy in enemies:
 
+            
+
 
             ex1, ey1, ex2, ey2 = self.canvas.bbox(enemy.id)
         
             if ex1 < x1 < ex2 and ey1 < y1 < ey2:
                 enemy.remove()
                 enemies.remove(enemy)  
-                self.canvas.delete(self.id)  
+
+                new_enemy = Enemy(tk, canvas, randint(0, WIDTH-50), randint(0, 100))
+                enemies.append(new_enemy)
+                total_score = total_score + 1
+                self.canvas.delete(self.id)
+
+                print(total_score)
+
                 
 
       #create sound function to be used / can use the same function but for multiple different sounds etc...
